@@ -11,14 +11,13 @@ app.use(express.json());
 app.use(cors());
 
 //iniciando o DB
-
 mongoose.connect(process.env.MONGO_URL , { useNewUrlParser: true });
 
 requireDir('./src/models');
 
 app.use('/',require("./src/routes/routes"));
 
-app.listen(4000);
+app.listen(process.env.PORT || 4000);
 
 
 //
