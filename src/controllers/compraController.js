@@ -40,13 +40,15 @@ module.exports = {
                     const cond2 = filtro.cond2
     
                     if(cond1 ==="$gte"|| cond2 === "$lt"){
-                        var Data  = new Date(filtro.data_compra);
-                        var FirstDay = new Date(Data.getFullYear(), Data.getMonth()+1, 1);
-                        var LastDay = new Date(Data.getFullYear(), Data.getMonth()+2, 0);
+                        var datas = filtro.data_compra
+                        var array_data = datas.split(",");
+                     
+                        var data_incial  = new Date(array_data[0]);
+                        var data_final  =  new Date(array_data[1]);
     
                         filtros.data_compra = { 
-                            '$gte': new Date(FirstDay),
-                            '$lt': new Date(LastDay)
+                            '$gte': data_incial,
+                            '$lt': data_final
                         }
                     }
         
@@ -55,7 +57,7 @@ module.exports = {
                 if(campo == "fornecedor_compra"){
                     
                     const cond1 = filtro.cond1
-                    const valor = filtro.fornecedfornecedor_compraor_despesa
+                    const valor = filtro.fornecedor_compra
                     
                     if(cond1=="$eq" && (valor.length > 0 || valor.length == undefined)){
                         filtros.fornecedor_compra = {"$eq":mongoose.Types.ObjectId(valor._id)}

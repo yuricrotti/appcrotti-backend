@@ -43,13 +43,17 @@ module.exports = {
                     const cond2 = filtro.cond2
     
                     if(cond1 ==="$gte"|| cond2 === "$lt"){
-                        var Data  = new Date(filtro.datapagamento_parcela);
-                        var FirstDay = new Date(Data.getFullYear(), Data.getMonth()+1, 1);
-                        var LastDay = new Date(Data.getFullYear(), Data.getMonth()+2, 0);
+                       
+
+                        var datas = filtro.datapagamento_parcela
+                        var array_data = datas.split(",");
+                     
+                        var data_incial  = new Date(array_data[0]);
+                        var data_final  =  new Date(array_data[1]);
     
                         filtros.datapagamento_parcela = { 
-                            '$gte': new Date(FirstDay),
-                            '$lt': new Date(LastDay)
+                            '$gte': new Date(data_incial),
+                            '$lt': new Date(data_final)
                         }
                     }
         
