@@ -39,7 +39,8 @@ module.exports = {
                      
                         var data_incial  = new Date(array_data[0]);
                         var data_final  =  new Date(array_data[1]);
-    
+                        console.log(data_incial)
+                        console.log(data_final)
                         filtros.data_cheque = { 
                             '$gte': new Date(data_incial),
                             '$lt': new Date(data_final)
