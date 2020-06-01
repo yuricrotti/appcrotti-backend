@@ -17,6 +17,35 @@ module.exports = {
     },
 
 
+    async updateestatus (req,res){
+        console.log("-----Alterando Status cheque----")
+        console.log("ID:"+ req.params.id)
+        console.log("Status atual :"+ req.body.status_atual)
+        let novo_status = ''
+        if(req.body.status_atual == 'E'){
+            novo_status = 'EP'    
+        }else{
+            novo_status = 'E'
+        }
+        console.log("Novo Status:"+novo_status)
+        const cheques = await cheque.updateOne({id_cheque:req.params.id},{status_cheque:novo_status});
+        return res.json(cheques);
+    },
+
+
+    
+    async descontar_cheque (req,res){
+        console.log("-----Descontando Cheque----")
+        console.log("ID:"+ req.params.id)
+        console.log("Status atual :"+ req.body.status_atual)
+        let novo_status = ''
+        novo_status = 'ED'
+        console.log("Novo Status:"+novo_status)
+        const cheques = await cheque.updateOne({id_cheque:req.params.id},{status_cheque:novo_status});
+        return res.json(cheques);
+    },
+
+
     async show(req,res){
         filtros = {}
    
@@ -26,6 +55,15 @@ module.exports = {
             filtro = JSON.parse(query[item])
             Object.keys(filtro).forEach(function(campo){
                 
+                
+                if(campo == "status_cheque"){
+                    const cond1 = filtro.cond1
+                    const valor = filtro.status_cheque
+                    
+                    if(cond1=="$eq"){
+                    filtros.status_cheque = {"$eq":valor}
+                    }
+                }
                 
                 if(campo == "data_cheque"){
                     

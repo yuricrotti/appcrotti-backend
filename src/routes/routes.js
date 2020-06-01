@@ -26,6 +26,8 @@ Routes.put('/compra/updatestatus/:id',CompraController.updateestatus),
 Routes.get('/cheque/showall' ,ChequeController.showall),
 Routes.post('/cheque/save',ChequeController.save),
 Routes.get('/cheque/show' ,ChequeController.show),
+Routes.put('/cheque/updatestatus/:id',ChequeController.updateestatus),
+Routes.put('/cheque/descontarcheque/:id',ChequeController.descontar_cheque),
 
 Routes.get('/despesa/showall' ,DespesaController.showall),
 Routes.get('/despesa/show' ,DespesaController.show),

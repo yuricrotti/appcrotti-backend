@@ -19,13 +19,13 @@ module.exports = {
     async show(req,res){
         filtros = {}
         console.log("------ SHOW FILTER (compras)-----")
-
+       
         let query = req.query
         Object.keys(query).forEach(function(item){
             filtro = JSON.parse(query[item])
             Object.keys(filtro).forEach(function(campo){
                 
-                if(campo == "statusstatus_compra_despesa"){
+                if(campo == "status_compra"){
                     const cond1 = filtro.cond1
                     const valor = filtro.status_compra
                     
@@ -84,7 +84,7 @@ module.exports = {
 
 
        // const despesas = await despesa.find({filtros})
-        console.log(compras)
+       // console.log(compras)
         return res.json(compras);
 
        
